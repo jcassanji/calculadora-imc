@@ -3,17 +3,19 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import logo from './assets/powered.png';
 import { Categories, calculate, categories } from './helpers/imc';
+import { GridItem } from './components/grid-item';
 
 const App = () => {
 
     const [heightField, setHeightField] = useState<number>(0);
     const [weightField, setWeightField] = useState<number>(0);
+    const [toShow, setToShow] = useState<Categories | null>(null); 
 
     const handleCalculateButton = () => {
         if (heightField && weightField) {
-
+            setToShow(calculate(heightField, weightField));
         } else {
-            alert("Preencha todos os campos corretamente!")
+            alert("Preencha todos os campos corretamente!");
         }
     }
 
@@ -36,11 +38,19 @@ const App = () => {
 
                 </div>
                 <div className={styles.rightside}>
-                    <div className={styles.grid}>
-                        {categories.map((item, key) =>(
-                            <div key = {key}> {item.title} </div>
-                        ))}
-                    </div>
+                    {!toShow &&
+                        <div className={styles.grid}>
+                            {categories.map((item, key) =>(
+                                <GridItem key = {key} item = {item}/>
+                            ))}
+                        </div>
+                    }
+                    {toShow &&
+                        <div className = {styles.rightBig}> 
+                            <div className = {styles.rightArrow}> </div>
+                            <GridItem item = {toShow}/>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

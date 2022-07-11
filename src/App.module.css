@@ -25,6 +25,7 @@ body {
 .container .rightside {
     flex: 1;
     margin-left: 40px;
+    display: flex;
 }
 
 .container .leftside h1 {
@@ -65,4 +66,17 @@ body {
 
 .container .leftside button:hover {
     opacity: 0.9;
+}
+
+.container .rightside .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.container .rightside .rightBig {
+    flex: 1;
+    display: flex;
+    
 }
