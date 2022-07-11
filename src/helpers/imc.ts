@@ -18,8 +18,9 @@ export const calculate = (height: number, weight: number) => {
 
     for (let i in categories) {
         if (imc >= categories[i].imc[0] && imc < categories[i].imc[1]) {
-            categories[i].yourImc = parseFloat(imc.toFixed(2));
-            return categories[i];
+            let categoriesCopy: Categories = {...categories[i]};
+            categoriesCopy.yourImc = parseFloat(imc.toFixed(2));
+            return categoriesCopy;
         };
     };
     return null;
